@@ -6,9 +6,10 @@ use Henrik\Command\AttributeParsers\AsCommandAttributeParser;
 use Henrik\Command\Attributes\AsCommand;
 use Henrik\Contracts\BaseComponent;
 use Henrik\Contracts\Command\CommandsContainerInterface;
+use Henrik\Contracts\ComponentInterfaces\AttributesAndParsersAwareInterface;
 use Henrik\Contracts\Enums\ServiceScope;
 
-class ConsoleComponent extends BaseComponent
+class ConsoleComponent extends BaseComponent implements AttributesAndParsersAwareInterface
 {
     public function getServices(): array
     {
