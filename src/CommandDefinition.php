@@ -1,6 +1,8 @@
 <?php
 
-namespace Hk\Command\ConsoleComponent;
+namespace Henrik\Command;
+
+use Henrik\Contracts\Command\CommandDefinitionInterface;
 
 class CommandDefinition implements CommandDefinitionInterface
 {

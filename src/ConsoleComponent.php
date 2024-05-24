@@ -1,12 +1,12 @@
 <?php
 
-namespace Hk\Command\ConsoleComponent;
+namespace Henrik\Command;
 
-use Hk\Command\ConsoleComponent\AttributeParsers\AsCommandAttributeParser;
-use Hk\Command\ConsoleComponent\Attrributes\AsCommand;
-use Hk\Contracts\BaseComponent;
-use Hk\Contracts\CommandsContainerInterface;
-use Hk\Contracts\Enums\ServiceScope;
+use Henrik\Command\AttributeParsers\AsCommandAttributeParser;
+use Henrik\Command\Attributes\AsCommand;
+use Henrik\Contracts\BaseComponent;
+use Henrik\Contracts\Command\CommandsContainerInterface;
+use Henrik\Contracts\Enums\ServiceScope;
 
 class ConsoleComponent extends BaseComponent
 {

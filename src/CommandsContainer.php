@@ -1,10 +1,10 @@
 <?php
 
-namespace Hk\Command\ConsoleComponent;
+namespace Henrik\Command;
 
 use Henrik\Container\Container;
 use Henrik\Container\ContainerModes;
-use Hk\Contracts\CommandsContainerInterface;
+use Henrik\Contracts\Command\CommandsContainerInterface;
 
 class CommandsContainer extends Container implements CommandsContainerInterface
 {

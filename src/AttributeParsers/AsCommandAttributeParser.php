@@ -1,11 +1,11 @@
 <?php
 
-namespace Hk\Command\ConsoleComponent\AttributeParsers;
+namespace Henrik\Command\AttributeParsers;
 
-use Hk\Command\ConsoleComponent\Attrributes\AsCommand;
-use Hk\Command\ConsoleComponent\CommandDefinition;
-use Hk\Command\ConsoleComponent\CommandsContainer;
-use Hk\Contracts\AttributeParser\AttributeParserInterface;
+use Henrik\Command\Attributes\AsCommand;
+use Henrik\Command\CommandDefinition;
+use Henrik\Command\CommandsContainer;
+use Henrik\Contracts\AttributeParser\AttributeParserInterface;
 use ReflectionClass;
 
 readonly class AsCommandAttributeParser implements AttributeParserInterface
@@ -18,7 +18,7 @@ readonly class AsCommandAttributeParser implements AttributeParserInterface
             /** @var AsCommand $asCommandAttribute */
             $asCommandAttribute = $attributeClass;
 
-            $definition = new CommandDefinition($asCommandAttribute->name, $asCommandAttribute->description);
+            $definition = new CommandDefinition($reflectionClass->getName(), $asCommandAttribute->description);
             $this->commandsContainer->set($asCommandAttribute->name, $definition);
 
         }
