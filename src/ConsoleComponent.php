@@ -14,7 +14,10 @@ class ConsoleComponent extends BaseComponent
     {
         return [
             ServiceScope::SINGLETON->value => [
-                [CommandsContainerInterface::class => CommandsContainer::class],
+                [
+                    'id'    => CommandsContainerInterface::class,
+                    'class' => CommandsContainer::class,
+                ],
             ],
         ];
     }
