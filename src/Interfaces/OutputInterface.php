@@ -2,4 +2,7 @@
 
 namespace Henrik\Console\Interfaces;
 
-interface OutputInterface {}
+interface OutputInterface
+{
+    public function prettyPrintCommands(array $commands): void;
+}

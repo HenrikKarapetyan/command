@@ -8,17 +8,13 @@ use Henrik\Contracts\EventInterface;
 class CommandEvent implements EventInterface
 {
     private CommandDefinitionInterface $commandDefinition;
-    /** @var array<string, scalar> */
-    private array $args;
 
     /**
      * @param CommandDefinitionInterface $commandDefinition
-     * @param array<string, scalar>      $args
      */
-    public function __construct(CommandDefinitionInterface $commandDefinition, array $args)
+    public function __construct(CommandDefinitionInterface $commandDefinition)
     {
         $this->commandDefinition = $commandDefinition;
-        $this->args              = $args;
     }
 
     public function getCommandDefinition(): CommandDefinitionInterface
@@ -29,23 +25,5 @@ class CommandEvent implements EventInterface
     public function setCommandDefinition(CommandDefinitionInterface $commandDefinition): void
     {
         $this->commandDefinition = $commandDefinition;
-    }
-
-    /**
-     * @return array<string, scalar>
-     */
-    public function getArgs(): array
-    {
-        return $this->args;
-    }
-
-    /**
-     * @param array<string, scalar> $args
-     *
-     * @return void
-     */
-    public function setArgs(array $args): void
-    {
-        $this->args = $args;
     }
 }

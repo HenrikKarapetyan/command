@@ -2,12 +2,22 @@
 
 namespace Henrik\Console\Subscribers;
 
+use Henrik\Console\CommandEvent;
+use Henrik\Console\Interfaces\CommandInterface;
 use Henrik\Contracts\CoreEvents;
+use Henrik\Contracts\DependencyInjectorInterface;
 use Henrik\Contracts\EventInterface;
 use Henrik\Contracts\EventSubscriberInterface;
+use Henrik\Contracts\MethodInvokerInterface;
+use Henrik\DI\Definition;
 
-class CommandEventSubscriber implements EventSubscriberInterface
+readonly class CommandEventSubscriber implements EventSubscriberInterface
 {
+    public function __construct(
+        private DependencyInjectorInterface $dependencyInjector,
+        private MethodInvokerInterface $methodInvoker
+    ) {}
+
     public static function getSubscribedEvents(): array
     {
         return [
@@ -15,8 +25,20 @@ class CommandEventSubscriber implements EventSubscriberInterface
         ];
     }
 
+    /**
+     * @param EventInterface $event
+     */
     public function onCommandMatch(EventInterface $event): void
     {
-        var_dump('ok');
+        if ($event instanceof CommandEvent) {
+            $handlerClass = $event->getCommandDefinition()->getClass();
+
+            $definition = new Definition($handlerClass, $handlerClass);
+
+            /** @var CommandInterface $commandObject */
+            $commandObject = $this->dependencyInjector->instantiate($definition);
+
+            $this->methodInvoker->invoke($commandObject, 'run');
+        }
     }
 }

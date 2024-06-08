@@ -11,24 +11,21 @@ use Henrik\Contracts\EventDispatcherInterface;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 
-class CommandProcessor implements CommandProcessorInterface
+readonly class CommandProcessor implements CommandProcessorInterface
 {
     public function __construct(
-        private readonly EventDispatcherInterface $commandEventDispatcher,
-        private readonly CommandsContainerInterface $commandsContainer
+        private EventDispatcherInterface $commandEventDispatcher,
+        private CommandsContainerInterface $commandsContainer
     ) {}
 
     /**
      * {@inheritDoc}
      *
-     * @param string                $command
-     * @param array<string, scalar> $args
-     *
      * @throws CommandNotFoundException
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
      */
-    public function process(string $command, array $args): void
+    public function process(string $command): void
     {
         if (!$this->commandsContainer->has($command)) {
             throw new CommandNotFoundException($command);
@@ -37,7 +34,7 @@ class CommandProcessor implements CommandProcessorInterface
         /** @var CommandDefinitionInterface $commandDefinition */
         $commandDefinition = $this->commandsContainer->get($command);
         $this->commandEventDispatcher->dispatch(
-            new CommandEvent($commandDefinition, $args),
+            new CommandEvent($commandDefinition),
             CoreEvents::COMMAND_MATCH_EVENTS
         );
     }
