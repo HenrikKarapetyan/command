@@ -1,10 +1,10 @@
 <?php
 
-namespace Henrik\Command\AttributeParsers;
+namespace Henrik\Console\AttributeParsers;
 
-use Henrik\Command\Attributes\AsCommand;
-use Henrik\Command\CommandDefinition;
-use Henrik\Command\CommandsContainer;
+use Henrik\Console\Attributes\AsCommand;
+use Henrik\Console\CommandDefinition;
+use Henrik\Console\CommandsContainer;
 use Henrik\Contracts\AttributeParser\AttributeParserInterface;
 use ReflectionClass;
 

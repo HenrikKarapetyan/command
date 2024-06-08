@@ -6,3 +6,6 @@ phpmd-report.html
 .php-cs-fixer.cache
 
 public
+
+src/Services
+src/SampleCommands

@@ -1,12 +1,12 @@
 <?php
 
-namespace Henrik\Command;
+namespace Henrik\Console;
 
-use Henrik\Command\AttributeParsers\AsCommandAttributeParser;
-use Henrik\Command\Attributes\AsCommand;
+use Henrik\Console\AttributeParsers\AsCommandAttributeParser;
+use Henrik\Console\Attributes\AsCommand;
 use Henrik\Contracts\BaseComponent;
-use Henrik\Contracts\Command\CommandsContainerInterface;
 use Henrik\Contracts\ComponentInterfaces\AttributesAndParsersAwareInterface;
+use Henrik\Contracts\Console\CommandsContainerInterface;
 use Henrik\Contracts\Enums\ServiceScope;
 
 class ConsoleComponent extends BaseComponent implements AttributesAndParsersAwareInterface

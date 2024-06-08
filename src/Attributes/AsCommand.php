@@ -1,6 +1,6 @@
 <?php
 
-namespace Henrik\Command\Attributes;
+namespace Henrik\Console\Attributes;
 
 use Attribute;
 

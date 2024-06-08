@@ -1,9 +1,9 @@
 {
-  "name": "henrik/command",
+  "name": "henrik/console",
   "type": "library",
   "license": "MIT",
   "minimum-stability": "dev",
-  "description": "Command",
+  "description": "Console",
   "authors": [
     {
       "name": "Henrik Karapetyan",
@@ -13,17 +13,19 @@
   "require": {
     "php": ">=8.2",
     "henrik/container": "dev-master",
-    "henrik/contracts": "dev-main"
+    "henrik/contracts": "dev-main",
+    "henrik/events": "dev-master"
   },
   "autoload": {
     "psr-4": {
-      "Henrik\\Command\\": "src"
+      "Henrik\\Console\\": "src"
     }
   },
   "require-dev": {
     "phpmd/phpmd": "^2.15",
     "friendsofphp/php-cs-fixer": "v3.57.2",
-    "phpstan/phpstan": "2.0.x-dev"
+    "phpstan/phpstan": "2.0.x-dev",
+    "henrik/dependency-injector": "dev-master"
   },
   "scripts": {
     "phpstan": [
