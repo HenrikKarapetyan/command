@@ -12,13 +12,14 @@ use Henrik\Console\IO\Output;
 use Henrik\Console\Subscribers\CommandEventSubscriber;
 use Henrik\Contracts\BaseComponent;
 use Henrik\Contracts\ComponentInterfaces\AttributesAndParsersAwareInterface;
+use Henrik\Contracts\ComponentInterfaces\EventSubscriberAwareInterface;
 use Henrik\Contracts\Console\CommandProcessorInterface;
 use Henrik\Contracts\Console\CommandsContainerInterface;
 use Henrik\Contracts\CoreEvents;
 use Henrik\Contracts\Enums\ServiceScope;
 use Henrik\Events\EventDispatcher;
 
-class ConsoleComponent extends BaseComponent implements AttributesAndParsersAwareInterface
+class ConsoleComponent extends BaseComponent implements AttributesAndParsersAwareInterface, EventSubscriberAwareInterface
 {
     public function getServices(): array
     {
@@ -60,6 +61,16 @@ class ConsoleComponent extends BaseComponent implements AttributesAndParsersAwar
     {
         return [
             AsCommand::class => AsCommandAttributeParser::class,
+        ];
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getEventSubscribers(): array
+    {
+        return [
+            CoreEvents::COMMAND_DISPATCHER_DEFAULT_DEFINITION_ID => [CommandEventSubscriber::class],
         ];
     }
 }
