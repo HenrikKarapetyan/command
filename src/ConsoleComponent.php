@@ -11,15 +11,15 @@ use Henrik\Console\IO\Input;
 use Henrik\Console\IO\Output;
 use Henrik\Console\Subscribers\CommandEventSubscriber;
 use Henrik\Contracts\BaseComponent;
-use Henrik\Contracts\ComponentInterfaces\AttributesAndParsersAwareInterface;
-use Henrik\Contracts\ComponentInterfaces\EventSubscriberAwareInterface;
+use Henrik\Contracts\ComponentInterfaces\OnAttributesAndParsersAwareInterface;
+use Henrik\Contracts\ComponentInterfaces\OnEventSubscriberAwareInterface;
 use Henrik\Contracts\Console\CommandProcessorInterface;
 use Henrik\Contracts\Console\CommandsContainerInterface;
 use Henrik\Contracts\CoreEvents;
 use Henrik\Contracts\Enums\ServiceScope;
 use Henrik\Events\EventDispatcher;
 
-class ConsoleComponent extends BaseComponent implements AttributesAndParsersAwareInterface, EventSubscriberAwareInterface
+class ConsoleComponent extends BaseComponent implements OnAttributesAndParsersAwareInterface, OnEventSubscriberAwareInterface
 {
     public function getServices(): array
     {
