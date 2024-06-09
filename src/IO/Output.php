@@ -8,9 +8,7 @@ use Henrik\Contracts\Console\CommandDefinitionInterface;
 class Output implements OutputInterface
 {
     /**
-     * @param array<string, CommandDefinitionInterface> $commands
-     *
-     * @return void
+     *{@inheritDoc}
      */
     public function prettyPrintCommands(array $commands): void
     {

@@ -4,13 +4,13 @@ namespace Henrik\Console\AttributeParsers;
 
 use Henrik\Console\Attributes\AsCommand;
 use Henrik\Console\CommandDefinition;
-use Henrik\Console\CommandsContainer;
 use Henrik\Contracts\AttributeParser\AttributeParserInterface;
+use Henrik\Contracts\Console\CommandsContainerInterface;
 use ReflectionClass;
 
 readonly class AsCommandAttributeParser implements AttributeParserInterface
 {
-    public function __construct(private CommandsContainer $commandsContainer) {}
+    public function __construct(private CommandsContainerInterface $commandsContainer) {}
 
     public function parse(?object $attributeClass, ReflectionClass $reflectionClass): void
     {
