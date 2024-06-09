@@ -33,6 +33,7 @@ readonly class CommandProcessor implements CommandProcessorInterface
 
         /** @var CommandDefinitionInterface $commandDefinition */
         $commandDefinition = $this->commandsContainer->get($command);
+
         $this->commandEventDispatcher->dispatch(
             new CommandEvent($commandDefinition),
             CoreEvents::COMMAND_MATCH_EVENTS

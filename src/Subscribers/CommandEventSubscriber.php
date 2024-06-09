@@ -27,8 +27,10 @@ readonly class CommandEventSubscriber implements EventSubscriberInterface
 
     /**
      * @param EventInterface $event
+     *
+     * @return mixed
      */
-    public function onCommandMatch(EventInterface $event): void
+    public function onCommandMatch(EventInterface $event): mixed
     {
         if ($event instanceof CommandEvent) {
             $handlerClass = $event->getCommandDefinition()->getClass();
@@ -38,7 +40,9 @@ readonly class CommandEventSubscriber implements EventSubscriberInterface
             /** @var CommandInterface $commandObject */
             $commandObject = $this->dependencyInjector->instantiate($definition);
 
-            $this->methodInvoker->invoke($commandObject, 'run');
+            return $this->methodInvoker->invoke($commandObject, 'run');
         }
+
+        return null;
     }
 }

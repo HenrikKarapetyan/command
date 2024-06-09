@@ -19,10 +19,7 @@ readonly class CommandRunner implements CommandRunnerInterface
     ) {}
 
     /**
-     * @param int           $argc
-     * @param array<string> $argv
-     *
-     * @return void
+     * {@inheritDoc}
      */
     public function run(int $argc, array $argv): void
     {
@@ -49,7 +46,6 @@ readonly class CommandRunner implements CommandRunnerInterface
             /** @var array<string, CommandDefinition> $commands */
             $commands = $this->commandsContainer->getAll();
             $this->output->prettyPrintCommands($commands);
-
         }
     }
 

@@ -4,5 +4,5 @@ namespace Henrik\Console\Interfaces;
 
 interface CommandInterface
 {
-    public function run(InputInterface $input, OutputInterface $output): void;
+    public function run(InputInterface $input, OutputInterface $output): mixed;
 }
