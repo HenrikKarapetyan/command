@@ -2,19 +2,33 @@
 
 namespace Henrik\Console\IO;
 
+use Henrik\Console\Console\Colors\Color;
+use Henrik\Console\Console\ConsoleOutputTextFormatter;
 use Henrik\Console\Interfaces\OutputInterface;
-use Henrik\Contracts\Console\CommandDefinitionInterface;
 
 class Output implements OutputInterface
 {
-    /**
-     *{@inheritDoc}
-     */
-    public function prettyPrintCommands(array $commands): void
+    public function write(string $line, Color $color = Color::BLACK): void
     {
-        /** @var CommandDefinitionInterface $properties */
-        foreach ($commands as $command => $properties) {
-            echo sprintf("Command: %s\t Description: %s\t Handler: %s \n", $command, $properties->getDescription(), $properties->getClass());
-        }
+        $consoleOutputTextFormatter = new ConsoleOutputTextFormatter();
+        $consoleOutputTextFormatter
+            ->addColorizedText($line, $color)
+            ->addNewLine();
+        echo $consoleOutputTextFormatter->getLine();
+    }
+
+    public function danger(string $line): void
+    {
+        $this->write($line, Color::RED);
+    }
+
+    public function warning(string $line): void
+    {
+        $this->write($line, Color::YELLOW);
+    }
+
+    public function success(string $line): void
+    {
+        $this->write($line, Color::LIGHT_GREEN);
     }
 }

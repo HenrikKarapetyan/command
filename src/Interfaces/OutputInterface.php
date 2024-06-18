@@ -2,14 +2,11 @@
 
 namespace Henrik\Console\Interfaces;
 
-use Henrik\Contracts\Console\CommandDefinitionInterface;
-
 interface OutputInterface
 {
-    /**
-     * @param array<string, CommandDefinitionInterface> $commands
-     *
-     * @return void
-     */
-    public function prettyPrintCommands(array $commands): void;
+    public function danger(string $line): void;
+
+    public function warning(string $line): void;
+
+    public function success(string $line): void;
 }

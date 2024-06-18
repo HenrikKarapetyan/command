@@ -2,9 +2,9 @@
 
 namespace Henrik\Console;
 
+use Henrik\Console\Interfaces\CommandHelperInterface;
 use Henrik\Console\Interfaces\CommandRunnerInterface;
 use Henrik\Console\Interfaces\InputInterface;
-use Henrik\Console\Interfaces\OutputInterface;
 use Henrik\Container\ContainerInterface;
 use Henrik\Contracts\Console\CommandProcessorInterface;
 use Henrik\Contracts\Console\CommandsContainerInterface;
@@ -14,7 +14,7 @@ readonly class CommandRunner implements CommandRunnerInterface
     public function __construct(
         private CommandProcessorInterface $commandProcessor,
         private CommandsContainerInterface $commandsContainer,
-        private OutputInterface $output,
+        private CommandHelperInterface $commandHelper,
         private InputInterface $input
     ) {}
 
@@ -45,7 +45,7 @@ readonly class CommandRunner implements CommandRunnerInterface
         if ($this->commandsContainer instanceof ContainerInterface) {
             /** @var array<string, CommandDefinition> $commands */
             $commands = $this->commandsContainer->getAll();
-            $this->output->prettyPrintCommands($commands);
+            $this->commandHelper->prettyPrintCommands($commands);
         }
     }
 
