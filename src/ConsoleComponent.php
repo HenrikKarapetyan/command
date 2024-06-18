@@ -4,6 +4,7 @@ namespace Henrik\Console;
 
 use Henrik\Console\AttributeParsers\AsCommandAttributeParser;
 use Henrik\Console\Attributes\AsCommand;
+use Henrik\Console\Interfaces\CommandHelperInterface;
 use Henrik\Console\Interfaces\CommandRunnerInterface;
 use Henrik\Console\Interfaces\InputInterface;
 use Henrik\Console\Interfaces\OutputInterface;
@@ -36,6 +37,10 @@ class ConsoleComponent extends BaseComponent implements OnAttributesAndParsersAw
                 [
                     'id'    => CommandRunnerInterface::class,
                     'class' => CommandRunner::class,
+                ],
+                [
+                    'id'    => CommandHelperInterface::class,
+                    'class' => CommandHelper::class,
                 ],
                 [
                     'id'    => InputInterface::class,
