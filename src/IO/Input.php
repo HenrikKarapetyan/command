@@ -38,4 +38,9 @@ class Input implements InputInterface
     {
         $this->args = $arguments;
     }
+
+    public function prompt(string $string): Prompt
+    {
+        return new Prompt($string);
+    }
 }

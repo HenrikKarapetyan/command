@@ -2,6 +2,8 @@
 
 namespace Henrik\Console\Interfaces;
 
+use Henrik\Console\IO\Prompt;
+
 interface InputInterface
 {
     /**
@@ -25,4 +27,6 @@ interface InputInterface
      * @return void
      */
     public function setArguments(array $arguments): void;
+
+    public function prompt(string $string): Prompt;
 }
