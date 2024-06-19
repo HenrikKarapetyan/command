@@ -4,7 +4,6 @@ namespace Henrik\Console;
 
 use Henrik\Console\AttributeParsers\AsCommandAttributeParser;
 use Henrik\Console\Attributes\AsCommand;
-use Henrik\Console\Interfaces\CommandHelperInterface;
 use Henrik\Console\Interfaces\CommandRunnerInterface;
 use Henrik\Console\Interfaces\InputInterface;
 use Henrik\Console\Interfaces\OutputInterface;
@@ -14,13 +13,14 @@ use Henrik\Console\Subscribers\CommandEventSubscriber;
 use Henrik\Contracts\BaseComponent;
 use Henrik\Contracts\ComponentInterfaces\OnAttributesAndParsersAwareInterface;
 use Henrik\Contracts\ComponentInterfaces\OnEventSubscriberAwareInterface;
+use Henrik\Contracts\ComponentInterfaces\OnSourcesAwareInterface;
 use Henrik\Contracts\Console\CommandProcessorInterface;
 use Henrik\Contracts\Console\CommandsContainerInterface;
 use Henrik\Contracts\CoreEvents;
 use Henrik\Contracts\Enums\ServiceScope;
 use Henrik\Events\EventDispatcher;
 
-class ConsoleComponent extends BaseComponent implements OnAttributesAndParsersAwareInterface, OnEventSubscriberAwareInterface
+class ConsoleComponent extends BaseComponent implements OnAttributesAndParsersAwareInterface, OnEventSubscriberAwareInterface, OnSourcesAwareInterface
 {
     public function getServices(): array
     {
@@ -37,10 +37,6 @@ class ConsoleComponent extends BaseComponent implements OnAttributesAndParsersAw
                 [
                     'id'    => CommandRunnerInterface::class,
                     'class' => CommandRunner::class,
-                ],
-                [
-                    'id'    => CommandHelperInterface::class,
-                    'class' => CommandHelper::class,
                 ],
                 [
                     'id'    => InputInterface::class,
@@ -77,5 +73,10 @@ class ConsoleComponent extends BaseComponent implements OnAttributesAndParsersAw
         return [
             CoreEvents::COMMAND_DISPATCHER_DEFAULT_DEFINITION_ID => [CommandEventSubscriber::class],
         ];
+    }
+
+    public function getSourcesDirectories(): array
+    {
+        return ['\\Henrik\\Console\\BaseCommands\\' => __DIR__ . '/BaseCommands'];
     }
 }

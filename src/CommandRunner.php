@@ -2,19 +2,16 @@
 
 namespace Henrik\Console;
 
-use Henrik\Console\Interfaces\CommandHelperInterface;
 use Henrik\Console\Interfaces\CommandRunnerInterface;
 use Henrik\Console\Interfaces\InputInterface;
-use Henrik\Container\ContainerInterface;
 use Henrik\Contracts\Console\CommandProcessorInterface;
-use Henrik\Contracts\Console\CommandsContainerInterface;
 
 readonly class CommandRunner implements CommandRunnerInterface
 {
+    public const DEFAULT_COMMAND = 'help';
+
     public function __construct(
         private CommandProcessorInterface $commandProcessor,
-        private CommandsContainerInterface $commandsContainer,
-        private CommandHelperInterface $commandHelper,
         private InputInterface $input
     ) {}
 
@@ -24,7 +21,7 @@ readonly class CommandRunner implements CommandRunnerInterface
     public function run(int $argc, array $argv): void
     {
         if ($argc < 2) {
-            $this->printAvailableCommands();
+            $this->commandProcessor->process(self::DEFAULT_COMMAND);
 
             return;
         }
@@ -38,15 +35,6 @@ readonly class CommandRunner implements CommandRunnerInterface
         }
 
         $this->commandProcessor->process($command);
-    }
-
-    private function printAvailableCommands(): void
-    {
-        if ($this->commandsContainer instanceof ContainerInterface) {
-            /** @var array<string, CommandDefinition> $commands */
-            $commands = $this->commandsContainer->getAll();
-            $this->commandHelper->prettyPrintCommands($commands);
-        }
     }
 
     /**
