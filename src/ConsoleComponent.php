@@ -77,6 +77,6 @@ class ConsoleComponent extends BaseComponent implements OnAttributesAndParsersAw
 
     public function getSourcesDirectories(): array
     {
-        return ['\\Henrik\\Console\\BaseCommands\\' => __DIR__ . '/BaseCommands'];
+        return ['\\Henrik\\Console\\BaseCommands' => __DIR__ . '/BaseCommands'];
     }
 }
