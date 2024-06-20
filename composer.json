@@ -24,7 +24,7 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "Henrik\\Console\\Tests\\": "src"
+      "Henrik\\Console\\Tests\\": "tests"
     }
   },
   "require-dev": {

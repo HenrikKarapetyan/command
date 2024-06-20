@@ -7,5 +7,5 @@ phpmd-report.html
 
 public
 
-src/Services
-src/SampleCommands
+.phpunit.cache
+coverage
